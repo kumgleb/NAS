@@ -1,4 +1,4 @@
-import numpy as nn
+import numpy as np
 import tensorflow as tf
 
 
@@ -8,7 +8,7 @@ def evaluate_accuracy(model, X_test, y_test):
   accuracy = tf.keras.metrics.Accuracy()(prediction, y_test)
   return accuracy
 
-def train_and_evaluate_from_scratch(train_data, validation_data, test_data,
+def train_and_evaluate_from_scratch(train_data, validation_data, test_data, supernet,
                                     n_filters, n_dense, n_classes, lr, batch_size,
                                     patience=2, n_loops=5):
   """
@@ -27,7 +27,7 @@ def train_and_evaluate_from_scratch(train_data, validation_data, test_data,
   for model_idx in [1, 2, 3, 4]:
     accuracy = []
     for _ in range(n_loops):
-      model = SuperNet(n_filters, n_dense, n_classes)
+      model = supernet(n_filters, n_dense, n_classes)
       subnet = model.sample_subnet(model_idx)
       subnet.compile(optimizer=tf.keras.optimizers.Adam(lr),
                      loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
