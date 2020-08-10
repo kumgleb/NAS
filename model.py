@@ -123,8 +123,8 @@ class SuperNet(tf.Module):
             Evaluates accuracy of SuperNet on validation data after every epoch.
         """
 
-        if n_btch_to_switch_subnet and n_btch_to_switch_subnet > batch_size:
-            raise ValueError(f'`n_btch_to_switch_subnet` should be less or equal to `batch_size`')
+        if n_btch_to_switch_subnet and n_btch_to_switch_subnet > X_test.shape[0] // batch_size:
+            raise ValueError(f'`n_btch_to_switch_subnet` should be less or equal to number of batches.')
 
         optimizer = tf.keras.optimizers.Adam(learning_rate)
 
