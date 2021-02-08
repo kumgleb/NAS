@@ -1,10 +1,6 @@
-# Тестовое задание
+NAS TF
 ---
-## Модель:
-В файле model.py реализована SuperNet согласно описанию. 
-Обучение SuperNet реализовано двумя способами:
- * Семплированием подсетей;
- * С использованием path dropout.
- 
- ## Эксперимент:
- Эксперименты с моделью, предложенные в задании, находятяся в ноутбуке Experiments.jpynb.
+## Model:
+SuperNet with two learning approaches:
+* Subnet sampling
+* Path dropout
